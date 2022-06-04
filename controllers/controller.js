@@ -1,5 +1,4 @@
 const DataBase = require("../models/dataBase");
-const { PythonShell } = require('python-shell');
 const runPythonFile = require('../helpers/python')
 
 
@@ -7,8 +6,7 @@ const runPythonFile = require('../helpers/python')
 //TODO: poner una lista de opciones en el name, ya que se puede poner
 //cualquier string
 
-const getDataBaseByName = async (req, res) => {
-
+const getDataBaseByName = async (req, res, pathPython) => {
   // FIXME: hacer que solo acepte nombres de bases
   const { name } = req.params
 
@@ -23,9 +21,10 @@ const getDataBaseByName = async (req, res) => {
     const database = await DataBase.findOne({ name })
 
 
+
     if (!database) {
       console.log('si no existe')
-      runPythonFile(name, res)
+      runPythonFile(name, res, false, pathPython)
 
     } else {
       console.log('si existe y:')
@@ -36,7 +35,7 @@ const getDataBaseByName = async (req, res) => {
       } else {
         console.log('es del dia pasado')
 
-        runPythonFile(name, res, true)
+        runPythonFile(name, res, true, pathPython)
       }
 
     }

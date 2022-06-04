@@ -6,13 +6,13 @@ const { getDataBaseByName } = require('./controllers/controller');
 
 
 connect()
-
+console.log(__dirname)
 //endpoint
 app.use('/', express.static('public'));
 app.use(cors())
-app.get("/api/:name", getDataBaseByName)
-
-
+app.get("/api/:name", (req, res) => {
+  getDataBaseByName(req, res, `${__dirname}/python`)
+})
 
 
 const port = process.env.PORT;

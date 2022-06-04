@@ -2,11 +2,13 @@ const { PythonShell } = require('python-shell');
 const DataBase = require("../models/dataBase");
 
 
-const runPythonFile = (name, res, isUpdate = false) => {
+const runPythonFile = (name, res, isUpdate = false, pathPython) => {
+
+  console.log(pathPython)
 
   let options = {
     mode: 'text',
-    scriptPath: 'python/'
+    scriptPath: pathPython
   };
 
   PythonShell.run(`${name}.py`, options, async function (err, result) {
