@@ -8,12 +8,13 @@ const { getDataBaseByName } = require('./controllers/controller');
 connect()
 
 //endpoint
+app.use('/', express.static('public'));
 app.use(cors())
 app.get("/api/:name", getDataBaseByName)
 
 
 
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT;
 app.listen(port, () => console.log(`Server connected to ${port}`));
 
