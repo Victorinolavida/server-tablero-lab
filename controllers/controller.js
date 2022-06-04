@@ -21,7 +21,7 @@ const getDataBaseByName = async (req, res, pathPython) => {
 
     const database = await DataBase.findOne({ name })
 
-
+    console.log(database)
 
     if (!database) {
       console.log('si no existe')
