@@ -18,17 +18,20 @@ const getDataBaseByName = async (req, res, pathPython) => {
   try {
 
     console.log('buscando db')
+
     const database = await DataBase.findOne({ name })
 
 
 
     if (!database) {
       console.log('si no existe')
+
       runPythonFile(name, res, false, pathPython)
 
     } else {
       console.log('si existe y:')
       const today = new Date().toDateString();
+
       if (today === database['UpdateAt']) {
         console.log('esta al dia')
         res.json(database)
